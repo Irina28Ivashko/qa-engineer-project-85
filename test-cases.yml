@@ -1,8 +1,8 @@
 ---
 - summary: |
-    Проверка регистрации пользователя на сайте
+    Проверка регистрации пользователя на сайте  по Email
   requirement: |
-    Пользователь должен иметь возможность зарегестрироваться на сайте
+    Пользователь должен иметь возможность зарегестрироваться на сайте с помощью Email
   prerequisites: |
     Открыта страница с формой регистрации на сайте Codebattle
   test-data: |
@@ -253,3 +253,40 @@
     - Нажать на кнопку 'Save'
   expected-result: |
     На странице сайта отобразится сообщение 'Your settings has been changed'
+    
+- summary: |
+    Проверка входа пользователя с несуществующими Email
+  requirement: |
+    При неправильном вводе Email пользователь должен получить сообщение об ошибке
+  prerequisites:
+      Открыта страница сайта Codebattle
+  test-data: |
+    password = peper2567 Email = iilona17@mail.com
+  steps:
+    - Нажать кнопку "Sign in"
+    - Вводим данные в строке "Email"
+    - Вводим данные в строке "password"
+    - Нажать кнопку "Submit"
+  expected-result: |
+     Отобразится ошибка "EMAIL_NOT_FOUND" на странице авторизации
+     
+- summary: |
+    Проверка возможности восстановления пароля
+  requirement: |
+    Пользователь должен иметь возможность восстановить пароль
+  prerequisites:
+    Открыта страница сайта Codebattle
+  test-data: |
+    password = peper2567 Email = iilona17@mail.com
+  steps:
+    - Нажать на кнопку "Sign in"
+    - Нажать на кнопку "Forgot your password?"
+    - Ввести Email в строке "Email"
+    - Нажать кнопку "Submit"
+    - Перейти по ссылке в письме, направленном от noreply@codebattle-5f929.firebaseapp.com
+    - Ввести новый пароль
+    - Нажать на кнопку "Save"
+  expected-result: |
+    Пароль пользователя будет восстановлен
+    
+ 
