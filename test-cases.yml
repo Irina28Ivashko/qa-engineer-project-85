@@ -56,7 +56,7 @@
   steps:
     - Нажать на кнопку "Create a game"
     - В пункте "Level" выбрать уровень сложности "**"
-    - Нажать на кнопку "Creatr batle"
+    - Нажать на кнопку "Create batle"
   expected-result: |
     У пользователя отобразится игра с уровнем "**"
     
@@ -74,7 +74,7 @@
     - В пункте "Game Type" выбрать "With other users"
     - В пункте "Time control" выставить "10 min"
     - В пункте "Choose task by name or tags" выбрать "boom"
-    - Нажать на кнопку "Creatr batle"
+    - Нажать на кнопку "Create batle"
   expected-result: |
     У пользователя отобразится игра с другим пользователем
     
@@ -93,7 +93,7 @@
     - В пункте "Time control" выставить "10 min"
     - В пункте "Choose opponent" выбрать соперника
     - В пункте "Choose task by name or tags" выбрать "boom"
-    - Нажать на кнопку "Creatr batle"
+    - Нажать на кнопку "Create batle"
   expected-result: |
     У пользователя отобразится игра с другом
     
@@ -111,7 +111,7 @@
     - В пункте "Game Type" выбрать "With a bot"
     - В пункте "Time control" выставить "10 min"
     - В пункте "Choose task by name or tags" выбрать "boom"
-    - Нажать на кнопку "Creatr batle"
+    - Нажать на кнопку "Create batle"
   expected-result: |
     У пользователя отобразится игра с ботом
     
@@ -240,7 +240,7 @@
     - В пункте 'Select sound type' выбрать 'Dendy'
     - Нажать на кнопку 'Save'
   expected-result: |
-    На странице сайта отобразится сообщение 'Your settings has been changed'
+    Пользователь услышит мелодию 'Dendy' и на странице сайта отобразится сообщение 'Your settings has been changed'
     
     
 - summary: |
@@ -254,10 +254,10 @@
   steps:
     - Нажать на иконку своего профиля
     - Выбрать 'Settings'
-    - В пункте 'Select sound level' выбрать уровень звука
+    - В пункте 'Select sound level' выбрать уровень звука на максимально высокое значение
     - Нажать на кнопку 'Save'
   expected-result: |
-    На странице сайта отобразится сообщение 'Your settings has been changed'
+     Пользователь услышит выбранную громкость звука и на странице сайта отобразится сообщение 'Your settings has been changed'
     
     
 - summary: |
@@ -324,6 +324,27 @@
     - Нажать синюю кнопку "Rematch" после проигрыша
   expected-result: |
     Пользователь увидит новую игру
+    
+    - summary: |
+     Проверка возможности одержать победу
+  requirement: |
+     Пользователь должен иметь возможность выиграть созданную игру
+  prerequisites:
+    Открыта страница сайта Codebattle
+  test-data: |
+    empty
+  steps:
+    - Нажать на кнопку "Create a game"
+    - В пункте "Level" выбрать уровень сложности "*"
+    - В пункте "Game Type" выбрать "With a bot"
+    - В пункте "Time control" выставить "8 min"
+    - В пункте "Choose task by name or tags" выбрать "boom"
+    - Нажать на кнопку "Create batle"
+    - Выбрать язык программирования "Node.js.16.17.0"
+    - Ввести верное решение в редактор кода
+    - Нажать на клавиатуре клавиши Ctrl + Enter
+  expected-result: |
+    Пользователь одержит победу в игре, в редакторе кода отобразится кубок и на странице всплывет окно с надписью "Woohoo, you're Champion!!!"
     
     
 - summary: |
@@ -445,10 +466,11 @@
     Проверка сброса редактора
   requirement: |
     Пользователь должен иметь возможность сбросить написанное в редакторе в любой момент
-  prerequisites: Открыта страница с выбранной игрой https://codebattle.hexlet.io/games/130463
+  prerequisites: Создана новая игра
   test-data: |
     empty
   steps:
+    - Написать код в редактор
     - Нажать на иконку в виде круглой стрелки над полем редактирования
   expected-result: |
     Редактор возвращается к начальному состоянию 
